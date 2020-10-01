@@ -1,0 +1,67 @@
+<ng-container>
+    <div class="container-tela">
+        <cdk-virtual-scroll-viewport [itemSize]="18 * 7" class="example-viewport">
+        <div>
+            <table id="tableCreditoGD" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="UC">
+                    <th mat-header-cell *matHeaderCellDef class="colum">
+                        UC
+                    </th>
+                    <td class="colum" mat-cell *matCellDef="let table">{{ table.uc }}</td>
+                </ng-container>
+    
+                <ng-container matColumnDef="competencia" >
+                    <th class="colum" mat-header-cell *matHeaderCellDef>
+                        Competência
+                    </th>
+                    <td class="colum" mat-cell *matCellDef="let table">
+                        {{ table.competencia }}
+                    </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="consumo" >
+                    <th class="colum" mat-header-cell *matHeaderCellDef>
+                        Consumo[kWh]
+                    </th>
+                    <td class="colum" mat-cell *matCellDef="let table">
+                        {{ table.consumo }}
+                    </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="produzido" >
+                    <th class="colum" mat-header-cell *matHeaderCellDef>
+                        Produzido[kWh]
+                    </th>
+                    <td class="colum" mat-cell *matCellDef="let table">{{ table.produzido }}</td>
+                </ng-container>
+    
+                <ng-container matColumnDef="creditoDebito">
+                    <th class="colum" mat-header-cell *matHeaderCellDef>
+                        Crédito(+) / Débito (-)
+                    </th>
+                    <td class="colum" mat-cell *matCellDef="let table">{{ table.creditoDebito }}</td>
+                </ng-container>
+    
+                <ng-container matColumnDef="acumulado">
+                    <th class="colum" mat-header-cell *matHeaderCellDef>
+                        Acumulado[kWh]
+                    </th>
+                    <td class="colum" mat-cell *matCellDef="let table">{{ table.acumulado }}</td>
+                </ng-container>
+    
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+        </div>
+        </cdk-virtual-scroll-viewport>
+        <div class="file">
+            <!-- <a class="button-filter-date" style="cursor: pointer" (click)="exportExcel()">
+                <mat-icon>Exportar Arquivos</mat-icon>
+              </a> -->
+            <button  mat-raised-button color="accent" (click)="exportExcel()" class="button-filter-date">Exportar Arquivo</button>
+        </div>
+        <div class="file" style="margin-right: 1%;">
+            <p><b>Para exportar o arquivo clique aqui:</b></p>
+        </div>
+    </div>
+</ng-container>

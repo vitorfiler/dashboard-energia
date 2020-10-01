@@ -1,0 +1,238 @@
+<ng-container style="padding-bottom: 15%;">
+    <div class="row">
+        <div class="col" style="padding-top: 3%; margin-left: 7%;">
+            <div class="row">
+                <mat-form-field appearance="outline">
+                    <mat-label>Selecione UC</mat-label>
+                    <mat-select #myselect matNativeControl id="gauge1" [(ngModel)]="unidade.ucGauge1"
+                        (ngModelChange)="gauge(unidade.ucGauge1, '1')">
+                        <mat-option  *ngFor="let loja of listLojas" ngSe>{{
+                            loja.uc
+                        }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <ngx-gauge [size]="240" [type]="gaugeType" [max]="dashboardService.max1"
+                    [value]="dashboardService.consumoGauge1" [thick]="7" [duration]="1000" [label]="gaugeLabel"
+                    [thresholds]="dashboardService.thresholds1">
+                    <ngx-gauge-value>
+                        {{ formatDisplayValue(dashboardService.consumoGauge1, "") }}
+                    </ngx-gauge-value>
+                </ngx-gauge>
+            </div>
+            <div class="row">
+                <label style="text-align: center; padding-bottom: 5px;"><b>Velocímetro de Consumo em kWh</b></label>
+            </div>
+            <div class="row" style="margin-left: -8%;">
+                <ngx-charts-bar-vertical-2d
+                    [view]="view"
+                    [scheme]="colorScheme"
+                    [results]="multi"
+                    [gradient]="gradient"
+                    [xAxis]="showXAxis"
+                    [yAxis]="showYAxis"
+                    [legend]="showLegend"
+                    [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel"
+                    [xAxisLabel]="xAxisLabelConsumo"
+                    [yAxisLabel]="yAxisLabel"
+                    [legendTitle]="legendTitle"
+                    >
+                    <!--(select)="onSelect($event)"
+                        (activate)="onActivate($event)"
+                        (deactivate)="onDeactivate($event)" -->
+                    </ngx-charts-bar-vertical-2d>
+            </div>
+            <!-- <div class="row">
+                <p>Previsão para o Próximo Mês: <label style="color: #0068B0;">{{previsao1}} kWh</label></p>
+                <label>Precisão: {{precisao1}}</label>
+            </div> -->
+            <br />
+            <div class="row" style="margin-left: -8%;">
+                <ngx-charts-bar-vertical-2d
+                    [view]="view"
+                    [scheme]="colorScheme"
+                    [results]="multi"
+                    [gradient]="gradient"
+                    [xAxis]="showXAxis"
+                    [yAxis]="showYAxis"
+                    [legend]="showLegend"
+                    [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel"
+                    [xAxisLabel]="xAxisLabelDemanda"
+                    [yAxisLabel]="yAxisLabel"
+                    [legendTitle]="legendTitle"
+                    >
+                    <!--(select)="onSelect($event)"
+                        (activate)="onActivate($event)"
+                        (deactivate)="onDeactivate($event)" -->
+                    </ngx-charts-bar-vertical-2d>
+            </div>
+        </div>
+        <div class="col" style="padding-top: 4%; margin-left: 7%;">
+            <div class="row" style="margin-left: 200px; ">
+                <button class="btn btn-primary">Editar</button>
+            </div>
+            <div class="row">
+                <ngx-gauge [size]="240" [type]="gaugeType" [max]="dashboardService.max1"
+                    [value]="dashboardService.consumoGauge1" [thick]="7" [duration]="1000" [label]="gaugeLabel"
+                    [thresholds]="dashboardService.thresholds1">
+                    <ngx-gauge-value>
+                        {{ formatDisplayValue(dashboardService.consumoGauge1, "") }}
+                    </ngx-gauge-value>
+                </ngx-gauge>
+            </div>
+            <div class="row">
+                <label style="text-align: center; padding-bottom: 5px;"><b>Velocímetro de Consumo em kWh</b></label>
+            </div>
+            <div class="row" style="margin-left: -8%;">
+                <ngx-charts-bar-vertical-2d
+                    [view]="view"
+                    [scheme]="colorScheme"
+                    [results]="multi"
+                    [gradient]="gradient"
+                    [xAxis]="showXAxis"
+                    [yAxis]="showYAxis"
+                    [legend]="showLegend"
+                    [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel"
+                    [xAxisLabel]="xAxisLabelConsumo"
+                    [yAxisLabel]="yAxisLabel"
+                    [legendTitle]="legendTitle"
+                    >
+                    <!--(select)="onSelect($event)"
+                        (activate)="onActivate($event)"
+                        (deactivate)="onDeactivate($event)" -->
+                    </ngx-charts-bar-vertical-2d>
+            </div>
+            <!-- <div class="row">
+                <p>Previsão para o Próximo Mês: <label style="color: #0068B0;">{{previsao1}} kWh</label></p>
+                <label>Precisão: {{precisao1}}</label>
+            </div> -->
+            <br />
+            <div class="row" style="margin-left: -8%;">
+                <ngx-charts-bar-vertical-2d
+                    [view]="view"
+                    [scheme]="colorScheme"
+                    [results]="multi"
+                    [gradient]="gradient"
+                    [xAxis]="showXAxis"
+                    [yAxis]="showYAxis"
+                    [legend]="showLegend"
+                    [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel"
+                    [xAxisLabel]="xAxisLabelDemanda"
+                    [yAxisLabel]="yAxisLabel"
+                    [legendTitle]="legendTitle"
+                    >
+                    <!--(select)="onSelect($event)"
+                        (activate)="onActivate($event)"
+                        (deactivate)="onDeactivate($event)" -->
+                    </ngx-charts-bar-vertical-2d>
+            </div>
+            
+        </div>
+    </div>
+    <div style="margin-left: 7%;" class="row table">
+            <table style="margin-bottom: 25%;" mat-table [dataSource]="dataSource1" class="mat-elevation-z8">
+                <ng-container matColumnDef="mes">
+                    <th style="text-align: center;" mat-header-cell *matHeaderCellDef>
+                        Mês
+                    </th>
+                    <td mat-cell *matCellDef="let table">{{ table.meses }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="fpta">
+                    <th style="text-align: center;" mat-header-cell *matHeaderCellDef>
+                        Cons. Ponta
+                    </th>
+                    <td style="text-align: center;" mat-cell *matCellDef="let table">
+                        {{ table.consFpta }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ponta">
+                    <th style="text-align: center;" mat-header-cell *matHeaderCellDef>
+                        Cons. F.Pta
+                    </th>
+                    <td style="text-align: center;" mat-cell *matCellDef="let table">
+                        {{ table.consPonta }}
+                    </td>
+                </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+    </div>
+</ng-container>
+
+<!-- <ng-container>
+    <div style="padding-top: 3%; margin-left: 13%;">
+        <mat-form-field appearance="fill">
+            <mat-label>Selecione</mat-label>
+            <select #myselect2 matNativeControl id="gauge2" [(ngModel)]="unidade.ucGauge2"
+                (ngModelChange)="gauge(unidade.ucGauge2, '2')">
+                <option [selected]="loja.uc == ucSelect2" *ngFor="let loja of listLojas" ngSe>{{
+                    loja.uc
+                }}</option>
+            </select>
+        </mat-form-field>
+        <div>
+            <ngx-gauge [size]="240" [type]="gaugeType" [max]="dashboardService.max2"
+                [value]="dashboardService.consumoGauge2" [thick]="7" [duration]="1000" [label]="gaugeLabel"
+                [thresholds]="dashboardService.thresholds2">
+                <ngx-gauge-value>
+                    {{ formatDisplayValue(dashboardService.consumoGauge2, "") }}
+                </ngx-gauge-value>
+            </ngx-gauge>
+        </div>
+        <label style="padding-bottom: 5px;"><b>GRÁFICO DE CONSUMO E PROJEÇÃO</b></label>
+        <div style="margin-left: -8%;">
+            <ngx-charts-line-chart style="margin-left: 20px;" #chart2 [view]="view" [scheme]="colorScheme"
+                [results]="line2" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
+                [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="yAxisLabel">
+            </ngx-charts-line-chart>
+        </div>
+        <div>
+            <p>Previsão para o Próximo Mês: <label style="color: #0068B0;">{{previsao2}} kWh</label></p>
+            <label>Precisão: {{precisao2}}</label>
+        </div>
+        <br />
+        <div>
+            <table style="margin-bottom: 25%;" mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
+                <ng-container matColumnDef="mes">
+                    <th style="text-align: center;" mat-header-cell *matHeaderCellDef>
+                        Mês
+                    </th>
+                    <td style="text-align: center;" mat-cell *matCellDef="let table">
+                        {{ table.meses }}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="fpta">
+                    <th style="text-align: center;" mat-header-cell *matHeaderCellDef>
+                        Cons. Ponta
+                    </th>
+                    <td style="text-align: center;" mat-cell *matCellDef="let table">
+                        {{ table.consFpta }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ponta">
+                    <th style="text-align: center;" mat-header-cell *matHeaderCellDef>
+                        Cons. F.Pta
+                    </th>
+                    <td style="text-align: center;" mat-cell *matCellDef="let table">
+                        {{ table.consPonta }}
+                    </td>
+                </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+        </div>
+    </div>
+</ng-container> -->

@@ -1,0 +1,94 @@
+
+<ng-container>
+    <div class="container-tela">
+        <div style="text-align: center;">
+            <p>VALOR FATURA [R$]</p>
+            <!-- <mat-form-field appearance="fill">
+                <mat-label>Selecione</mat-label>
+                <select
+                    matNativeControl
+                    id="gauge1"
+                    [(ngModel)]="unidade.uc"
+                    (ngModelChange)="atualizaGrafico(unidade.uc)">
+                    <option *ngFor="let loja of listLojas" ngSe>{{
+                        loja
+                    }}</option>
+                </select>
+            </mat-form-field> -->
+        </div>
+        <div>
+            <combo-chart-component
+                [view]="view"
+                [scheme]="comboBarScheme"
+                [colorSchemeLine]="lineChartScheme"
+                [results]="barChart"
+                [gradient]="gradient"
+                [animations]="animations"
+                [lineChart]="lineChartSeries"
+                
+                
+                [gradient]="gradient"
+                [xAxis]="showXAxis"
+                [yAxis]="showYAxis"
+                [legend]="showLegend"
+                [legendTitle]="legendTitle"
+                [legendPosition]="legendPosition"
+                [showGridLines]="showGridLines"
+                [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel"
+                [showRightYAxisLabel]="showYAxisLabel"
+                
+                [yAxisLabel]="yAxisLabel"
+                [yAxisLabelRight]="yAxisLabelRight">
+            </combo-chart-component>
+            <!-- 
+                [yRightAxisTickFormatting]="yRightTickFormat"
+                [yAxisTickFormatting]="yLeftTickFormat" 
+                [yLeftAxisScaleFactor]="yLeftAxisScale"
+                [yRightAxisScaleFactor]="yRightAxisScale"
+                [xAxisLabel]="xAxisLabel"
+            -->
+        </div>
+        <div id="input">
+            <div>
+                <table
+                    style="margin-bottom: 25%;"
+                    mat-table
+                    [dataSource]="dataSource"
+                    class="mat-elevation-z8"
+                    style="float: left;">
+                    <ng-container matColumnDef="mes">
+                        <th class="colum" mat-header-cell *matHeaderCellDef>
+                            Tipo de Dado
+                        </th>
+                        <td class="colum" mat-cell *matCellDef="let table">{{ table.tipoDado }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ponta">
+                        <th class="colum" mat-header-cell *matHeaderCellDef>
+                            Consumo[kWh]
+                        </th>
+                        <td class="colum"  mat-cell *matCellDef="let table">
+                            {{ table.consumo }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="fpta">
+                        <th class="colum" mat-header-cell *matHeaderCellDef>
+                            Valor Bruto[R$]
+                        </th>
+                        <td class="colum" mat-cell *matCellDef="let table">
+                            {{ table.valor }}
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+</ng-container>
+
+

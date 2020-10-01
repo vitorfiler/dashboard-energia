@@ -1,0 +1,50 @@
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+.mat-table-sticky {
+    border-top: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    border-left: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+
+}
+
+.colum{
+    padding-left: 15px;
+    text-align: center;
+}
+
+.container-tela{
+    margin-bottom: 25%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 4%;
+}
+
+.button-filter-date{
+    height: 35px;
+    margin-top: 10px;
+}
+
+.file{
+    float:right;
+    margin-top: 1%;
+}
+@media screen and (max-width: 600px) {
+    .example-viewport {
+        height: 550px;
+        width: 360px;
+    }
+}
+  
+@media screen and (min-width: 600px) {
+    .example-viewport {
+        margin: auto;
+        height: 300px;
+        width: 100%;
+    }
+}

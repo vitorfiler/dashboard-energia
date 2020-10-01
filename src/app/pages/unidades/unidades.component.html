@@ -1,0 +1,138 @@
+<ng-container>
+    <div class="container-tela">
+        <div class="cont-vertical-graph" fxLayout="column">
+            <div>
+                <!-- <mat-form-field class="date-picker w-128">
+                    <mat-label>Faturamento</mat-label>
+                    <input matInput [matDatepicker]="mesFatu" (dateChange)="getFaturamento($event.value)">
+                    <mat-datepicker-toggle matSuffix [for]="mesFatu"></mat-datepicker-toggle>
+                    <mat-datepicker #mesFatu></mat-datepicker>
+                    <div *ngIf="possuiFaturamento && !carregamento">
+                        <mat-error>
+                            Nenhum dado encontrado
+                        </mat-error>
+                    </div>
+                </mat-form-field> -->
+                <button style="margin-left: 30px;" mat-raised-button color="primary" class="button-filter-date"
+                    (click)="dateFilter()">Filtrar</button>
+            </div>
+        </div>
+        <div>
+            <cdk-virtual-scroll-viewport [itemSize]="18 * 7" class="example-viewport">
+            <table id="tableUnidades" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="UC">
+                    <th class="colum" mat-header-cell *matHeaderCellDef>
+                        UC
+                    </th>
+                    <td class="colum" mat-cell *matCellDef="let table">{{ table.uc || "-" }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="mes">
+                    <th class="colum" mat-header-cell *matHeaderCellDef>
+                        Mês
+                    </th>
+                    <td class="colum" mat-cell *matCellDef="let table">
+                        {{ table.competencia || "-" }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="cidade">
+                    <th class="colum" mat-header-cell *matHeaderCellDef>
+                        Cidade
+                    </th>
+                    <td class="colum" mat-cell *matCellDef="let table">
+                        {{ table.cidade || "-" }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="subGrupo">
+                    <th class="colum" mat-header-cell *matHeaderCellDef>
+                        Sub Grupo
+                    </th>
+                    <td class="colum" mat-cell *matCellDef="let table">{{ table.subGrupo || "-" }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="consumoConvencional">
+                    <th class="colum" mat-header-cell *matHeaderCellDef>
+                        Convencional[kWh]
+                    </th>
+                    <td class="colum" mat-cell *matCellDef="let table">{{ table.consumoConvencional || "-" }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="consumoPonta">
+                    <th class="colum" mat-header-cell *matHeaderCellDef>
+                        Ponta[kWh]
+                    </th>
+                    <td class="colum" mat-cell *matCellDef="let table">{{ table.consumoPonta || "-" }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="DemandaFatPonta">
+                    <th class="colum" mat-header-cell *matHeaderCellDef>
+                        Demanda Fat. Ponta[kW]
+                    </th>
+                    <td class="colum" mat-cell *matCellDef="let table">{{ table.demandaFatPonta || "-" }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="consumoForaPonta">
+                    <th class="colum" mat-header-cell *matHeaderCellDef>
+                        Fora de Ponta[kWh]
+                    </th>
+                    <td class="colum" mat-cell *matCellDef="let table">{{ table.consumoForaPonta || "-" }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="DemandaFatFPonta">
+                    <th class="colum" mat-header-cell *matHeaderCellDef>
+                        Demanda Fat. Fora Ponta[kW]
+                    </th>
+                    <td class="colum" mat-cell *matCellDef="let table">{{ table.demandaFatFPonta || "-" }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="consumoPorGD">
+                    <th class="colum" mat-header-cell *matHeaderCellDef>
+                        GD[kWh]
+                    </th>
+                    <td class="colum" mat-cell *matCellDef="let table">{{ table.consumoPorGD || "-" }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="icms">
+                    <th class="colum" mat-header-cell *matHeaderCellDef>
+                        ICMS[R$]
+                    </th>
+                    <td class="colum" mat-cell *matCellDef="let table">{{ table.ICMS || "-" }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="pis">
+                    <th class="colum" mat-header-cell *matHeaderCellDef>
+                        PIS[R$]
+                    </th>
+                    <td class="colum" mat-cell *matCellDef="let table">{{ table.PIS || "-" }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Cofins">
+                    <th class="colum" mat-header-cell *matHeaderCellDef>
+                        COFINS[R$]
+                    </th>
+                    <td class="colum" mat-cell *matCellDef="let table">{{ table.COFINS || "-" }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="valorTotal">
+                    <th class="colum" mat-header-cell *matHeaderCellDef>
+                        Valor total[R$]
+                    </th>
+                    <td class="colum" mat-cell *matCellDef="let table">{{ table.valorTotal || "-" }}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+        </cdk-virtual-scroll-viewport>
+            <div class="file">
+                <button mat-raised-button color="primary" (click)="exportExcel()" class="button-filter-date">Exportar
+                    Arquivo</button>
+            </div>
+            <div class="file" style="margin-right: 1%;">
+                <p><b>Para exportar o arquivo clique aqui:</b></p>
+            </div>
+        </div>
+    </div>
+</ng-container>

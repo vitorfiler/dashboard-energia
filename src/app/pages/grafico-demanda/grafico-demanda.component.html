@@ -1,0 +1,55 @@
+
+<ng-container>
+    <div class="container-tela">
+        <div style="text-align: center;">
+            <p>VALOR FATURA [R$]</p>
+            <!-- <mat-form-field appearance="fill">
+                <mat-label>Selecione</mat-label>
+                <select
+                    matNativeControl
+                    id="gauge1"
+                    [(ngModel)]="unidade.uc"
+                    (ngModelChange)="atualizaGrafico(unidade.uc)">
+                    <option *ngFor="let loja of listLojas" ngSe>{{
+                        loja
+                    }}</option>
+                </select>
+            </mat-form-field> -->
+        </div>
+        <div>
+            <combo-chart-component
+                [view]="view"
+                [scheme]="comboBarScheme"
+                [colorSchemeLine]="lineChartScheme"
+                [results]="barChart"
+                [gradient]="gradient"
+                [animations]="animations"
+                [lineChart]="lineChartSeries"
+                
+                
+                [gradient]="gradient"
+                [xAxis]="showXAxis"
+                [yAxis]="showYAxis"
+                [legend]="showLegend"
+                [legendTitle]="legendTitle"
+                [legendPosition]="legendPosition"
+                [showGridLines]="showGridLines"
+                [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel"
+                [showRightYAxisLabel]="showYAxisLabel"
+                
+                [yAxisLabel]="yAxisLabel"
+                [yAxisLabelRight]="yAxisLabelRight">
+            </combo-chart-component>
+            <!-- 
+                [yRightAxisTickFormatting]="yRightTickFormat"
+                [yAxisTickFormatting]="yLeftTickFormat" 
+                [yLeftAxisScaleFactor]="yLeftAxisScale"
+                [yRightAxisScaleFactor]="yRightAxisScale"
+                [xAxisLabel]="xAxisLabel"
+            -->
+        </div>
+    </div>
+</ng-container>
+
+

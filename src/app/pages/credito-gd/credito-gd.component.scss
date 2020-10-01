@@ -1,0 +1,34 @@
+table {
+    width: 100%;
+}
+
+.colum{
+    padding-left: 85px;
+    text-align: center;
+}
+
+.container-tela{
+    margin-bottom: 25%;
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-top: 9%;
+}
+.file{
+    float:right;
+    margin-top: 1%;
+}
+
+@media screen and (max-width: 600px) {
+    .example-viewport {
+        height: 550px;
+        width: 360px;
+    }
+}
+  
+@media screen and (min-width: 600px) {
+    .example-viewport {
+        margin: auto;
+        height: 300px;
+        width: 100%;
+    }
+}

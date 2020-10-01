@@ -1,0 +1,60 @@
+<div class="toolbar w-full px-gutter" fxLayout="row" fxLayoutAlign="start center" vexContainer>
+  <button (click)="openSidenav()" [fxHide]="!mobileQuery" mat-icon-button type="button">
+    <mat-icon [icIcon]="icMenu"></mat-icon>
+  </button>
+
+  <a *ngIf="isVerticalLayout$ | async"
+     [routerLink]="['/home/init']"
+     class="ltr:mr-4 rtl:ml-4 block"
+     fxLayout="row"
+     fxLayoutAlign="start center">
+    <img class="w-8 select-none" src="assets/img/demo/logo.svg">
+    <h1 [fxHide]="mobileQuery" class="title ltr:pl-4 rtl:pr-4 m-0 select-none">Economizenergia</h1>
+  </a>
+
+  <div *ngIf="(isVerticalLayout$ | async) && isNavbarInToolbar$ | async"
+       [fxHide]="mobileQuery"
+       class="px-gutter"
+       fxFlex="none"
+       fxLayout="row"
+       fxLayoutAlign="start center">
+    <vex-navigation-item *ngFor="let item of navigationItems" [item]="item"></vex-navigation-item>
+  </div>
+
+  <span fxFlex></span>
+
+  <div class="-mx-1 flex items-center">
+    <div #originRef
+        (click)="showPopover(originRef)"
+        [class.bg-hover]="dropdownOpen"
+        class="flex items-center rounded cursor-pointer relative trans-ease-out select-none py-1 pr-1 pl-3 hover:bg-hover"
+        matRipple>
+      <div class="body-1 font-medium leading-snug ltr:mr-3 rtl:ml-3" fxHide.xs>{{userName}}</div>
+      <div class="rounded-full h-9 w-9 flex items-center justify-center text-primary bg-primary-light">
+        <mat-icon [icIcon]="icPerson"></mat-icon>
+      </div>
+    </div>
+
+    <button style="margin-left: 20px;" [fxHide]="mobileQuery" type="button">
+      <mat-icon [icIcon]="icContactSupport"></mat-icon>
+    </button>
+    <!-- <div class="px-1">
+      <vex-toolbar-user></vex-toolbar-user>
+    </div> -->
+
+    <!-- <mat-menu #languageMenu="matMenu" overlapTrigger="false" xPosition="before" yPosition="below">
+      <button mat-menu-item>
+        <mat-icon [icIcon]="emojioneUS"></mat-icon>
+        <span>English</span>
+      </button>
+
+      <button mat-menu-item>
+        <mat-icon [icIcon]="emojioneDE"></mat-icon>
+        <span>German</span>
+      </button>
+    </mat-menu> -->
+  </div>
+</div>
+
+<vex-navigation *ngIf="(isVerticalLayout$ | async) && isNavbarBelowToolbar$ | async"
+                [fxHide]="mobileQuery"></vex-navigation>
